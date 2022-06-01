@@ -1,0 +1,24 @@
+/* mobile first */
+body {
+    background-color: #15202B;
+    color: #E7E9EA;
+    margin: 0px;
+    font-family: 'Roboto';
+}
+
+p {
+    margin: 4px;
+    padding: 0px;
+}
+
+#tweet{
+    display: flex;
+    border-bottom: 1px solid #71767B;
+    padding: 12px;
+}
+.tweet-img{
+    margin-right: 8px;
+}
+/* responsividade
+@media (min-width: 800px) {
+} */
