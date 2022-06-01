@@ -3,21 +3,27 @@
     <head>
         <meta charset="utf-8"/>
         <title>Codar.me</title>
-        <style>
-            body {
-                background-color: #15202B;
-                color: #E7E9EA;
-            }
-        </style>
+
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+
+        <link rel="stylesheet" href="./index.css"/>
+        
     </head>
     <body>
-        <div>
-            <img src="./img/avatar.png"/>
-            <spam>Elon Musk</spam>
-            <spam>@elonmusck</spam>  
-            <p>
-                Let's make Twitter a maximun fun!
-            </p>
+        <div id="tweet">
+            <div id="col-avatar" class="col">
+                <img src="./img/avatar.png" class="tweet-img"/>
+            </div>
+            <div id="col-text" class="col">
+                <spam>Elon Musk</spam>
+                <spam>@elonmusck</spam>  
+                <p>
+                    Let's make Twitter a maximun fun!
+                </p>
+            </div>
         </div>
+        <script src="./index.js"></script>
     </body>
 </html>
