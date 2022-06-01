@@ -1,6 +1,6 @@
 export const App = () => {
   return (
-    <div id="tweet" className="flex space-x-3">
+    <div id="tweet" className="flex space-x-3 p-4 border-b border-silver">
       <div id="tweet-avatar">
         <img src="/src/avatar.png"/>
       </div>
