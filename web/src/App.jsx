@@ -1,10 +1,10 @@
 export const App = () => {
   return (
-    <div id="tweet">
-      <div id="col-avatar" className="col">
-        <img src="/src/avatar.png" className="tweet_img"/>
+    <div id="tweet" className="flex space-x-3">
+      <div id="tweet-avatar">
+        <img src="/src/avatar.png"/>
       </div>
-      <div id="col-text" className="col">
+      <div id="tweet-text">
         <span>Elon Musck</span>
         <span>@elonmusck</span>
         <p>
