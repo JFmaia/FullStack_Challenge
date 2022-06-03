@@ -2,6 +2,7 @@
   "name": "api",
   "version": "0.0.0",
   "description": "",
+  "type": "module",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -10,5 +11,8 @@
     "name": "José Flávio",
     "email": "jfmaia741@gmail.com"
   },
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "koa": "^2.13.4"
+  }
 }
