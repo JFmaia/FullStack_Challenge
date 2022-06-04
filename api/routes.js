@@ -4,12 +4,13 @@ import { PrismaClient } from '@prisma/client';
 const prisma = new PrismaClient();
 export const router = new Router();
 
-
+// Carrega varios usuários
 router.get('/tweets', async ctx =>{
     const tweets = await prisma.tweet.findMany();
     ctx.body = tweets;
 })
 
+// Cria um Tweet
 router.post('/tweets', async ctx =>{
    const tweet = await prisma.tweet.create({
        data: {
@@ -21,6 +22,7 @@ router.post('/tweets', async ctx =>{
    ctx.body = tweet;   
 })
 
+//Cadastra um usuário
 router.post('/signup', async ctx =>{
     const user = await prisma.user.create({
         data:{
