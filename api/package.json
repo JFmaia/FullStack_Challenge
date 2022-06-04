@@ -2,9 +2,15 @@
   "name": "api",
   "version": "0.0.0",
   "main": "server.js",
-  "author": "José Flávio <jfmaia>",
-  "license": "MIT",
   "type": "module",
+  "license": "MIT",
+  "author": {
+    "name": "José Flávio Maia",
+    "email": "jfmaia741@gmail.com"
+  },
+  "scripts": {
+    "dev": "node server.js"
+  },
   "dependencies": {
     "@koa/cors": "^3.3.0",
     "@koa/router": "^10.1.1",
