@@ -1,4 +1,4 @@
 import { app } from "./setup.js";
 
-app.listen(9901,() => console.log('Server is running'));
+app.listen(9901,() => console.log('Server is running porta 9901'));
 
