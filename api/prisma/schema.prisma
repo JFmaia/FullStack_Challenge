@@ -17,6 +17,7 @@ model User {
   username    String
   name        String
   email       String
+  password    String
   tweets Tweet[]
 }
 
