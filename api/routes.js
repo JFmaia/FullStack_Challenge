@@ -1,7 +1,11 @@
 import Router from '@koa/router';
 import { PrismaClient } from '@prisma/client';
+import bcrypt from 'bcrypt';
 
+// Iniciaaliza o cliente do Prisma
 const prisma = new PrismaClient();
+
+// Exportando rotas para outros arquivos
 export const router = new Router();
 
 // Carrega varios usuários
@@ -24,12 +28,15 @@ router.post('/tweets', async ctx =>{
 
 //Cadastra um usuário
 router.post('/signup', async ctx =>{
+    const saltRounds = 10;
+    const password = bcrypt.hashSync(ctx.request.body.password, saltRounds); //criptografa a senha
+    
     const user = await prisma.user.create({
         data:{
             name: ctx.request.body.name,
             username:ctx.request.body.username,
             email: ctx.request.body.email,
-            password: ctx.request.body.password,
+            password: password,
         }
     });
 
