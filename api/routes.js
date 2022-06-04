@@ -11,14 +11,26 @@ router.get('/tweets', async ctx =>{
 })
 
 router.post('/tweets', async ctx =>{
-   const tweet = {
-        userId: 'cl3z6c6ik002534td2kzd7n70',
-        text: ctx.request.body.text
-   }
-
-   const doc = await prisma.tweet.create({
-       data: tweet,
+   const tweet = await prisma.tweet.create({
+       data: {
+            userId: 'cl3z6c6ik002534td2kzd7n70',
+            text: ctx.request.body.text
+       }
    })
 
-   ctx.body = doc;   
+   ctx.body = tweet;   
+})
+
+router.post('/signup', async ctx =>{
+    const user = await prisma.user.create({
+        data:{
+            name: ctx.request.body.name,
+            username:ctx.request.body.username,
+            email: ctx.request.body.email,
+            password: ctx.request.body.password,
+        }
+    });
+
+    ctx.body = user;
+
 })
