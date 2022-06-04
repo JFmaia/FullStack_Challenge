@@ -26,6 +26,40 @@ router.post('/tweets', async ctx =>{
    ctx.body = tweet;   
 })
 
+// Login de usuario
+router.get('/login', async ctx =>{
+    // Pegando do header o email e senha
+    const [, token] = ctx.request.header.authorization.split(' ');
+    const [email, plainTextpassword ] = Buffer.from(token, 'base64').toString().split(':');
+    
+    // Buscando o usuario no banco
+    const user = await prisma.user.findUnique({
+        where: { email }
+    });
+
+    if(!user){
+        ctx.body = 404
+        return
+    }
+
+    // Verificando se a senha está correta
+    const passwordMatch = bcrypt.compareSync(plainTextpassword, user.password);
+
+    if(passwordMatch){
+        ctx.body = {
+            id: user.id,
+            name: user.name,
+            username: user.username,
+            email: user.email,
+        };
+    
+        return
+    }
+
+    ctx.body = 404
+
+});
+
 //Cadastra um usuário
 router.post('/signup', async ctx =>{
     const saltRounds = 10;
