@@ -40,6 +40,11 @@ router.post('/signup', async ctx =>{
         }
     });
 
-    ctx.body = user;
+    ctx.body = {
+        id: user.id,
+        name: user.name,
+        username: user.username,
+        email: user.email,
+    };
 
 })
