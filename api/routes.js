@@ -1,6 +1,7 @@
 import Router from '@koa/router';
 import { PrismaClient } from '@prisma/client';
 import bcrypt from 'bcrypt';
+import jwt from 'jsonwebtoken';
 
 // Iniciaaliza o cliente do Prisma
 const prisma = new PrismaClient();
@@ -46,11 +47,16 @@ router.get('/login', async ctx =>{
     const passwordMatch = bcrypt.compareSync(plainTextpassword, user.password);
 
     if(passwordMatch){
+        // Gerando o token usando jsonwebtoken
+        const accessToken = jwt.sign({
+            sub:user.id,
+        }, process.env.JWT_SECRET, {expiresIn:'24h'});
         ctx.body = {
             id: user.id,
             name: user.name,
             username: user.username,
             email: user.email,
+            accessToken
         };
     
         return
