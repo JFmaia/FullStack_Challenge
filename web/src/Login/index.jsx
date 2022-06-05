@@ -1,5 +1,6 @@
 import {useFormik} from 'formik';
 import * as yup from 'yup'; //biblioteca para validar os campos
+import axios from 'axios';
 
 //Componente input
 const Input = props => (
@@ -12,21 +13,27 @@ const validationSchema = yup.object().shape({
     password: yup.string().required("Digite sua senha")
 });
 
-export function Login(){
+export function Login({signInUser}) {
     const formik = useFormik({
         // Função que será chamada quando o formulário for submetido
-        onSubmit: values => {
+        onSubmit: async values => { 
+            const res = await axios.get('http://localhost:9901/login', {
+                auth: {
+                    username: values.email,
+                    password: values.password,
+                }
+            })
 
+            signInUser(res.data);
         },
-
-        validationSchema,// Validação dos campos
-        validateOnMount: true,// Quando o formulario for montado, validar os campos
-
         // Valores iniciais dos campos
         initialValues: {
             email: '',
             password: '',
         },
+        
+        validateOnMount: true,// Quando o formulario for montado, validar os campos
+        validationSchema,// Validação dos campos
         
     });
 
@@ -34,7 +41,7 @@ export function Login(){
         <div className="h-full flex flex-col justify-center p-12 space-y-6">
             <h1 className="text-3xl">Acesse sua conta</h1>
 
-            <form className="space-y-6">
+            <form className="space-y-6" onSubmit={formik.handleSubmit}>
                 <div className='space-y-2'>
                     <Input 
                         type='text'
@@ -43,6 +50,7 @@ export function Login(){
                         value= {formik.values.email}
                         onChange={formik.handleChange}// para pegar o que foi digitado no input
                         onBlur={formik.handleBlur}// evento que será feito a verificação do campo
+                        disabled={formik.isSubmitting}// para desabilitar o campo enquanto o formulário estiver sendo enviado
                     />
                     {(formik.touched.email && formik.errors.email) && ( 
                         <div className='text-red-500 pl-2'>{formik.errors.email}</div>
@@ -57,6 +65,7 @@ export function Login(){
                         value= {formik.values.password}
                         onChange={formik.handleChange}// para pegar o que foi digitado no input
                         onBlur={formik.handleBlur}// evento que será feito a verificação do campo
+                        disabled={formik.isSubmitting}// para desabilitar o campo enquanto o formulário estiver sendo enviado
                     />
                     {(formik.touched.password && formik.errors.password) && ( 
                         <div className='text-red-500 pl-2'>{formik.errors.password}</div>
@@ -64,11 +73,13 @@ export function Login(){
                 </div>
 
                 <button 
+                    type="submit"
                     className="w-full bg-birdBlue py-4 rounded-full disabled:opacity-50 text-lg" 
-                    disabled={!formik.isValid}
+                    disabled={formik.isSubmitting || !formik.isValid }
                 >
                     Entrar
                 </button>
+                {formik.isSubmitting ? 'Enviando...': 'Entrar'}
             </form>
             <span className="text-sm text-silver text-center">
                 Não tem conta? 
