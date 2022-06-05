@@ -11,20 +11,59 @@ export const router = new Router();
 
 // Carrega varios usuários
 router.get('/tweets', async ctx =>{
-    const tweets = await prisma.tweet.findMany();
-    ctx.body = tweets;
+    // Pegando token do usuário
+    const [, token] = ctx.request.header.authorization.split(' ');
+
+    // Se não tem token, retorna erro
+    if(!token){
+        ctx.status = 401;
+        return;
+    }
+    
+    try{
+        // decodificando o token
+        jwt.verify(token, process.env.JWT_SECRET);
+
+        const tweets = await prisma.tweet.findMany();
+        ctx.body = tweets;
+
+    }catch(error){
+       ctx.status =401; 
+       return
+    }
+  
 })
 
 // Cria um Tweet
 router.post('/tweets', async ctx =>{
-   const tweet = await prisma.tweet.create({
-       data: {
-            userId: 'cl3z6c6ik002534td2kzd7n70',
-            text: ctx.request.body.text
-       }
-   })
+    // Pegando token do usuário
+    const [, token] = ctx.request.header.authorization.split(' ');
 
-   ctx.body = tweet;   
+    // Se não tem token, retorna erro
+    if(!token){
+        ctx.status = 401;
+        return;
+    }
+
+    // Se tem token, verifica se é válido
+    try{
+        // decodificando o token
+        const payload = jwt.verify(token, process.env.JWT_SECRET);
+
+        const tweet = await prisma.tweet.create({
+        data: {
+            userId: payload.sub,
+            text: ctx.request.body.text
+        }
+    })
+
+    ctx.body = tweet;
+
+    }catch(error){
+       ctx.status =401; 
+       return
+    }
+  
 })
 
 // Login de usuario
