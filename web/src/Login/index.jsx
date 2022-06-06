@@ -77,13 +77,13 @@ export function Login({signInUser}) {
                     className="w-full bg-birdBlue py-4 rounded-full disabled:opacity-50 text-lg" 
                     disabled={formik.isSubmitting || !formik.isValid }
                 >
-                    Entrar
+                   {formik.isSubmitting ? 'Enviando...': 'Entrar'}
                 </button>
-                {formik.isSubmitting ? 'Enviando...': ''}
+                
             </form>
             <span className="text-sm text-silver text-center">
                 Não tem conta? 
-                <a className="text-birdBlue" href="/"> Cadastre-se</a>
+                <a className="text-birdBlue" href="/signup"> Cadastre-se.</a>
             </span>
         </div>
     )
