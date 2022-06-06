@@ -79,7 +79,7 @@ export function Login({signInUser}) {
                 >
                     Entrar
                 </button>
-                {formik.isSubmitting ? 'Enviando...': 'Entrar'}
+                {formik.isSubmitting ? 'Enviando...': ''}
             </form>
             <span className="text-sm text-silver text-center">
                 Não tem conta? 
