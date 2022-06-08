@@ -56,7 +56,7 @@ function Tweet({name, username, avatar, children}){
 }
 
 export function Home(){
-  const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJjbDQ1a2JoZnEwMDAwZDB0ZHVzN3EwN2JrIiwiaWF0IjoxNjU0Njk0NTk3LCJleHAiOjE2NTQ3ODA5OTd9.wzXVp0NtPgchvduNWezwO6OYeYJU6d3ThNc7Mme16Xs';
+  const token = '';
   const [data, setData] = useState([]);
 
   async function getData(){
