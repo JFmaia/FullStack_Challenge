@@ -76,7 +76,7 @@ export function Home({loggedInUser}){
       <TweetForm />
       <div>
         {data.length === '' ? <h1>Nenhum tweet</h1> : data.map(tweet => (
-          <Tweet name={tweet.user.name} username={tweet.user.username} avatar="/src/avatar.png">
+          <Tweet key={tweet.id} name={tweet.user.name} username={tweet.user.username} avatar="/src/avatar.png">
             {tweet.text}
           </Tweet>
         ))}
