@@ -55,14 +55,13 @@ function Tweet({name, username, avatar, children}){
   );
 }
 
-export function Home(){
-  const token = '';
+export function Home({loggedInUser}){
   const [data, setData] = useState([]);
 
   async function getData(){
     const res = await axios.get('http://localhost:9901/tweets', {
       headers: {
-        'authorization': `Bearer ${token}`
+        'authorization': `Bearer ${loggedInUser.accessToken}`
       }
     });
     setData(res.data);
