@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react';
 import avatar from "./avatar.png";
 
 const MAX_TWEET_CHAR =140;
+
 // Fazendo tweet 
 function TweetForm({loggedInUser, onSuccess}){
   const formik = useFormik({
