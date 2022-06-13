@@ -30,7 +30,7 @@ function TweetForm({loggedInUser, onSuccess}){
   return (
     <div className='border-b border-silver p-4 space-y-6'>
       <div className='flex  space-x-5'>
-        <img src='/src/avatar.png' className='w-7'></img>
+        <img src={avatar} className='w-7'></img>
         <h1 className='font-bold text-xl'>Página Inicial</h1>
       </div>
       <form className='pl-12 text-lg flex flex-col' onSubmit={formik.handleSubmit}>
