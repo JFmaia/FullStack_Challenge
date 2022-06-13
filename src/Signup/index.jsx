@@ -19,7 +19,7 @@ export function Signup({signUpUser}) {
     const formik = useFormik({
         // Função que será chamada quando o formulário for submetido
         onSubmit: async values => { 
-            const res = await axios.post('http://localhost:9901/signup', 
+            const res = await axios.post(`${import.meta.env.VITE_API_HOST}/signup`, 
                 {
                     name: values.name,
                     username: values.username,
